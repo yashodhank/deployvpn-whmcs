@@ -261,6 +261,22 @@ function deployvpn_AdminServicesTabFields(array $params)
     }
 }
 
+function deployvpn_Renew(array $params)
+{
+	$client = new DeployVPN($params["serverhostname"], $params["serverusername"], $params["serverpassword"]);
+	$vpnuser_id = $params['model']->serviceProperties->get('id');
+	$result = $client->renewUser($vpnuser_id);
+	
+	if($result["status"])
+	{
+		return "success";
+	}
+	else
+	{
+		return $result["message"];
+	}
+}
+
 function deployvpn_ClientArea(array $params)
 {
 	$client = new DeployVPN($params["serverhostname"], $params["serverusername"], $params["serverpassword"]);

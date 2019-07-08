@@ -149,6 +149,10 @@ class DeployVPN
 	   $result = $this->call("POST", "user/changePassword/".$vpnuser_id, array("password" => $password), true);	
 	   return $result["status"];
    	}   
-   	   	
+   	
+    public function renewUser($vpnuser_id)
+   	{
+	   	return $this->call("GET", "user/renew/".$vpnuser_id."/", array(), true);
+   	}     	   	
 }
 ?>
